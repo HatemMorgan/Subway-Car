@@ -139,7 +139,7 @@ public class ButtonsManager : MonoBehaviour {
             canvaseGroup.alpha = 0f;
             canvaseGroup.blocksRaycasts = false;
 
-            btnCredit.transform.Translate(-30,250, 0);
+            btnCredit.transform.Translate(-30,400, 0);
 
             txtCredit.GetComponent<CanvasGroup>().alpha = 1f;
 
@@ -167,7 +167,7 @@ public class ButtonsManager : MonoBehaviour {
             canvaseGroup.alpha = 1f;
             canvaseGroup.blocksRaycasts = true;
 
-            btnCredit.transform.Translate(30, -250, 0);
+            btnCredit.transform.Translate(30, -400, 0);
 
             txtCredit.GetComponent<CanvasGroup>().alpha = 0f;
 
@@ -199,7 +199,7 @@ public class ButtonsManager : MonoBehaviour {
             canvaseGroup.alpha = 0f;
             canvaseGroup.blocksRaycasts = false;
 
-            btnHowToPlay.transform.Translate(-30, 200, 0);
+            btnHowToPlay.transform.Translate(-30, 350, 0);
 
             txtHowToPlay.GetComponent<CanvasGroup>().alpha = 1f;
 
@@ -227,7 +227,7 @@ public class ButtonsManager : MonoBehaviour {
             canvaseGroup.alpha = 1f;
             canvaseGroup.blocksRaycasts = true;
 
-            btnHowToPlay.transform.Translate(30, -200, 0);
+            btnHowToPlay.transform.Translate(30, -350, 0);
 
             txtHowToPlay.GetComponent<CanvasGroup>().alpha = 0f;
 
