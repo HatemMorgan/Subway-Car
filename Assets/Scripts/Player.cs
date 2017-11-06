@@ -75,11 +75,11 @@ public class Player : MonoBehaviour {
         
         }
 
-        if (Input.GetButtonDown("Jump") && car.transform.position.y >= 0.5 && car.transform.position.y < 0.6)
+        if (Input.GetButtonDown("Jump"))
             jump();
 
         if (Input.GetKeyDown(KeyCode.C))
-            camera();
+            changeCamera();
 
     }
 
@@ -257,16 +257,19 @@ public class Player : MonoBehaviour {
 
     public void jump()
     {
-        car.transform.Translate(0, 2, 1);
-        car.GetComponent<Rigidbody>().AddForce(new Vector3(0, -2 * speed, 0), ForceMode.Impulse);
-        if (car.transform.position.y < 0.5)
-            car.transform.position = new Vector3(car.transform.position.x, 0.5f, car.transform.position.z);
+        if (car.transform.position.y >= 0.5 && car.transform.position.y < 0.6)
+        {
+            car.transform.Translate(0, 2, 1);
+            car.GetComponent<Rigidbody>().AddForce(new Vector3(0, -2 * speed, 0), ForceMode.Impulse);
+            if (car.transform.position.y < 0.5)
+                car.transform.position = new Vector3(car.transform.position.x, 0.5f, car.transform.position.z);
 
-        if (!Configurations.getInstance().isSoundMuted())
-            AudioSource.PlayClipAtPoint(jumpClip, car.transform.position);
+            if (!Configurations.getInstance().isSoundMuted())
+                AudioSource.PlayClipAtPoint(jumpClip, car.transform.position);
+        }
     }
 
-    public void camera()
+    public void changeCamera()
     {
         if (currCamera.Equals(thirdCameraPerson))
         {
