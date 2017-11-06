@@ -7,17 +7,23 @@ using UnityEngine.UI;
 public class ButtonsManager : MonoBehaviour {
 
     public GameObject emptyGameObject;
-    public Canvas optionsCanvase;
+
     public Button btnCredit;
-    public Text txtHowToPlay;
-    public Toggle toggleMute;
     public Button btnHowToPlay;
-    public Canvas startSceneCanvase;
+    public Button btnStart;
+    public Button btnOptions;
+
+    public Toggle toggleMute;
+
+
+    public Text txtHowToPlay;
+    public Text txtStartGame;
     public Text txtCredit;
 
     private bool expandedOptions;
     private bool wasBtnHowTopPlayClicked;
     private bool wasBtnCreditClicked;
+    private bool wasMuteEnabled;
 
 	// Use this for initialization
 	void Start () {
@@ -55,7 +61,15 @@ public class ButtonsManager : MonoBehaviour {
              foreach(GameObject o in GameObject.FindGameObjectsWithTag("main"))
                  o.transform.Translate(0, 100, 0);
 
-            CanvasGroup canvasGroup = optionsCanvase.GetComponent<CanvasGroup>();
+            CanvasGroup canvasGroup = btnHowToPlay.GetComponent<CanvasGroup>();
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
+
+            canvasGroup = btnCredit.GetComponent<CanvasGroup>();
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
+
+            canvasGroup = toggleMute.GetComponent<CanvasGroup>();
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
 
@@ -67,7 +81,15 @@ public class ButtonsManager : MonoBehaviour {
             foreach (GameObject o in GameObject.FindGameObjectsWithTag("main"))
                 o.transform.Translate(0, -100, 0);
 
-            CanvasGroup canvasGroup = optionsCanvase.GetComponent<CanvasGroup>();
+            CanvasGroup canvasGroup = btnHowToPlay.GetComponent<CanvasGroup>();
+            canvasGroup.alpha = 0f;
+            canvasGroup.blocksRaycasts = false;
+
+            canvasGroup = btnCredit.GetComponent<CanvasGroup>();
+            canvasGroup.alpha = 0f;
+            canvasGroup.blocksRaycasts = false;
+
+            canvasGroup = toggleMute.GetComponent<CanvasGroup>();
             canvasGroup.alpha = 0f;
             canvasGroup.blocksRaycasts = false;
 
@@ -77,12 +99,12 @@ public class ButtonsManager : MonoBehaviour {
 
     }
 
-    public void mute(bool change)
+    public void mute()
     {
-        print(change);
+        wasMuteEnabled = !wasMuteEnabled;
         Configurations config = Configurations.getInstance();
-        config.setSoundMuted(change);
-        if (change)
+        config.setSoundMuted(wasMuteEnabled);
+        if (wasMuteEnabled)
         {
             emptyGameObject.GetComponent<AudioSource>().Pause();
         }
@@ -97,7 +119,15 @@ public class ButtonsManager : MonoBehaviour {
     {
         if (!wasBtnCreditClicked)
         {
-            CanvasGroup canvaseGroup = startSceneCanvase.GetComponent<CanvasGroup>();
+            CanvasGroup canvaseGroup = txtStartGame.GetComponent<CanvasGroup>();
+            canvaseGroup.alpha = 0f;
+            canvaseGroup.blocksRaycasts = false;
+
+            canvaseGroup = btnStart.GetComponent<CanvasGroup>();
+            canvaseGroup.alpha = 0f;
+            canvaseGroup.blocksRaycasts = false;
+
+            canvaseGroup = btnOptions.GetComponent<CanvasGroup>();
             canvaseGroup.alpha = 0f;
             canvaseGroup.blocksRaycasts = false;
 
@@ -109,7 +139,7 @@ public class ButtonsManager : MonoBehaviour {
             canvaseGroup.alpha = 0f;
             canvaseGroup.blocksRaycasts = false;
 
-            btnCredit.transform.Translate(-30, 400, 0);
+            btnCredit.transform.Translate(-30,250, 0);
 
             txtCredit.GetComponent<CanvasGroup>().alpha = 1f;
 
@@ -117,7 +147,15 @@ public class ButtonsManager : MonoBehaviour {
         }
         else
         {
-            CanvasGroup canvaseGroup = startSceneCanvase.GetComponent<CanvasGroup>();
+            CanvasGroup canvaseGroup = txtStartGame.GetComponent<CanvasGroup>();
+            canvaseGroup.alpha = 1f;
+            canvaseGroup.blocksRaycasts = true;
+
+            canvaseGroup = btnStart.GetComponent<CanvasGroup>();
+            canvaseGroup.alpha = 1f;
+            canvaseGroup.blocksRaycasts = true;
+
+            canvaseGroup = btnOptions.GetComponent<CanvasGroup>();
             canvaseGroup.alpha = 1f;
             canvaseGroup.blocksRaycasts = true;
 
@@ -129,7 +167,7 @@ public class ButtonsManager : MonoBehaviour {
             canvaseGroup.alpha = 1f;
             canvaseGroup.blocksRaycasts = true;
 
-            btnCredit.transform.Translate(30, -400, 0);
+            btnCredit.transform.Translate(30, -250, 0);
 
             txtCredit.GetComponent<CanvasGroup>().alpha = 0f;
 
@@ -141,7 +179,15 @@ public class ButtonsManager : MonoBehaviour {
     {
         if (!wasBtnHowTopPlayClicked)
         {
-            CanvasGroup canvaseGroup =  startSceneCanvase.GetComponent<CanvasGroup>();
+            CanvasGroup canvaseGroup = txtStartGame.GetComponent<CanvasGroup>();
+            canvaseGroup.alpha = 0f;
+            canvaseGroup.blocksRaycasts = false;
+
+            canvaseGroup = btnStart.GetComponent<CanvasGroup>();
+            canvaseGroup.alpha = 0f;
+            canvaseGroup.blocksRaycasts = false;
+
+            canvaseGroup = btnOptions.GetComponent<CanvasGroup>();
             canvaseGroup.alpha = 0f;
             canvaseGroup.blocksRaycasts = false;
 
@@ -153,7 +199,7 @@ public class ButtonsManager : MonoBehaviour {
             canvaseGroup.alpha = 0f;
             canvaseGroup.blocksRaycasts = false;
 
-            btnHowToPlay.transform.Translate(-30, 350, 0);
+            btnHowToPlay.transform.Translate(-30, 200, 0);
 
             txtHowToPlay.GetComponent<CanvasGroup>().alpha = 1f;
 
@@ -161,7 +207,15 @@ public class ButtonsManager : MonoBehaviour {
         }
         else
         {
-            CanvasGroup canvaseGroup = startSceneCanvase.GetComponent<CanvasGroup>();
+            CanvasGroup canvaseGroup = txtStartGame.GetComponent<CanvasGroup>();
+            canvaseGroup.alpha = 1f;
+            canvaseGroup.blocksRaycasts = true;
+
+            canvaseGroup = btnStart.GetComponent<CanvasGroup>();
+            canvaseGroup.alpha = 1f;
+            canvaseGroup.blocksRaycasts = true;
+
+            canvaseGroup = btnOptions.GetComponent<CanvasGroup>();
             canvaseGroup.alpha = 1f;
             canvaseGroup.blocksRaycasts = true;
 
@@ -173,7 +227,7 @@ public class ButtonsManager : MonoBehaviour {
             canvaseGroup.alpha = 1f;
             canvaseGroup.blocksRaycasts = true;
 
-            btnHowToPlay.transform.Translate(30, -350, 0);
+            btnHowToPlay.transform.Translate(30, -200, 0);
 
             txtHowToPlay.GetComponent<CanvasGroup>().alpha = 0f;
 
